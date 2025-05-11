@@ -6,7 +6,7 @@ start_month=05
 start_day=11
 end_month=06
 end_day=14
-branch="practic"  # Cambia la rama si es necesario
+branch="main"  # Cambia la rama si es necesario
 
 # Función para generar fecha aleatoria
 random_datetime() {
