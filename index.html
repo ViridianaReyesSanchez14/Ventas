@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto de Venta</title>
+    <link rel="stylesheet" href="css/productos.css">
+    <script type="module">
+        import { obtenerProductos, actualizarStock, verificarStock } from './js/inventario.js';
+
+        // Función para mostrar las secciones según el menú seleccionado
+        function mostrarSeccion(seccion) {
+            // Ocultar todas las secciones
+            const secciones = document.querySelectorAll('.seccion');
+            secciones.forEach(sec => sec.style.display = 'none');
+
+            // Mostrar la sección seleccionada
+            const seccionMostrar = document.getElementById(seccion);
+            seccionMostrar.style.display = 'block';
+        }
+
+        // Inicializar productos
+        window.onload = function() {
+            // Mostrar la primera sección (productos por defecto)
+            mostrarSeccion('productos');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Sistema de Punto de Venta</h1>
+        <nav>
+            <ul>
+                <li><a href="javascript:void(0)" onclick="mostrarSeccion('productos')">Productos</a></li>
+                <li><a href="javascript:void(0)" onclick="mostrarSeccion('ventas')">Ventas</a></li>
+                <li><a href="javascript:void(0)" onclick="mostrarSeccion('proveedor')">Proveedor</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenedores para las secciones -->
+    <div id="productos" class="seccion" style="display: none;">
+        <h2>Productos</h2>
+        <div class="productos-container"></div>
+    </div>
+
+    <div id="ventas" class="seccion" style="display: none;">
+        <h2>Venta de Productos</h2>
+        <form>
+            <label for="producto-venta">Producto:</label>
+            <select id="producto-venta"></select>
+            <label for="cantidad-venta">Cantidad a vender:</label>
+            <input type="number" id="cantidad-venta" min="1">
+            <button type="button" onclick="realizarVenta()">Realizar Venta</button>
+        </form>
+        <div id="mensaje-error-venta"></div>
+    </div>
+
+    <div id="proveedor" class="seccion" style="display: none;">
+        <h2>Proveedor - Compra de Productos</h2>
+        <form>
+            <label for="producto-proveedor">Producto:</label>
+            <select id="producto-proveedor"></select>
+            <label for="cantidad-proveedor">Cantidad a comprar:</label>
+            <input type="number" id="cantidad-proveedor" min="1">
+            <button type="button" onclick="registrarCompra()">Registrar Compra</button>
+        </form>
+        <div id="mensaje-error-proveedor"></div>
+    </div>
+
+    <script type="module" src="js/proveedor.js"></script>
+    <script type="module" src="js/venta.js"></script>
+</body>
+</html>
